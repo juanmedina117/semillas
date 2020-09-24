@@ -1,0 +1,629 @@
+<app-barra-usuario></app-barra-usuario>
+<div class="container-fluid">
+
+    <div class="contenedor-admin">
+
+        <div class="row">
+
+            <aside class="col-3 aside">
+                <h4 class="titulo-aside">Selecciona un opción</h4>
+                <div class="menu">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action" (click)="registroSemilla()">Registro Semilla</li>
+                        <li class="list-group-item list-group-item-action" (click)="admin()">Nuevo administrador</li>
+                        <li class="list-group-item list-group-item-action" (click)="modificar()">Modificar Semilla</li>
+                        <li class="list-group-item list-group-item-action" (click)="salida()">Salida de Semillas</li>
+                        <li class="list-group-item list-group-item-action" (click)="total()">Total de semillas</li>
+                        <li class="list-group-item list-group-item-action" (click)="pdf()">Generar PDF</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="col-9 main">
+
+                <div class="titulo-main">
+
+                    <h4 class="titulo-main">{{titulo}}</h4>
+
+                    <div class="contenedor-regSemillas">
+
+                        <!-- REGISTRO SEMILLAS -->
+                        <form class="was-validated" *ngIf="vistaRegistro" #f="ngForm" (ngSubmit)="guardar(f)">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="viaje">Numero de viaje</label>
+                                    <input type="number" class="form-control" id="viaje" name="nViaje" #nViaje="ngModel" [(ngModel)]="modeloSemillas.num_viaje" required placeholder="ingresa numero de viaje" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="fecha">Fecha</label>
+                                    <input type="date" name="fecha" #fecha="ngModel" [(ngModel)]="modeloSemillas.fecha" class="form-control" id="fecha" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputAddress">Clave/ID</label>
+                                    <input type="text" class="form-control" id="inputAddress" name="clave" #clave="ngModel" [(ngModel)]="modeloSemillas.clave" required placeholder="Clave/ID">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputAddress2">Nombre de la especie</label>
+                                    <select class="form-control" id="especie" name="especie" #especie="ngModel" [(ngModel)]="modeloSemillas.especie" required>
+                                        <option value="#" selected disabled>NINGUNA</option>
+                                            <option value="CONIFERAS"><em> CONIFERAS</em> </option>
+                                            <option value="Abies Religiosa">Abies Religiosa</option>
+                                            <option value="Cupressus Lusitanica">Cupressus Lusitanica</option>
+                                            <option value="Pinus Cembroides">Pinus Cembroides</option>
+                                            <option value="Pinus Greggi">Pinus Greggi</option>
+                                            <option value="Pinus Hartwegii">Pinus Hartwegii</option>
+                                            <option value="Pinus Leiophylla">Pinus Leiophylla</option>
+                                            <option value="Pinus Devoniana">Pinus Devoniana</option>
+                                            <option value="Pinus Montezumae">Pinus Montezumae</option>
+                                            <option value="Pinus Patula">Pinus Patula</option>
+                                            <option value="Pinus pseudostrobus">Pinus pseudostrobus</option>
+                                            <option value="Pinus Rudis">Pinus Rudis</option>
+                                            <option value="Pinus Teocote">Pinus Teocote</option>
+                                            <option value="Taxodium Mucronatum">Taxodium Mucronatum</option>
+                                            <option value="LATIFOLIADAS"><em>LATIFOLIADAS</em></option>
+                                            <option value="Alnus Jorullensis">Alnus Jorullensis</option>
+                                            <option value="Bursera Cuneata">Bursera Cuneata</option>
+                                            <option value="Casuarina Equisetifolia">Casuarina Equisetifolia</option>
+                                            <option value="Fraxinus Udhei">Fraxinus Udhei</option>
+                                            <option value="Liquidambar Styraciflua">Liquidambar Styraciflua</option>
+                                            <option value="Prosopis Laevigata">Prosopis Laevigata</option>
+                                            <option value="Quercus spp">Quercus spp</option>
+                                            <option value="Salix Babylonica">Salix Babylonica</option>
+                                            <option value="Salix Bonplandiana">Salix Bonplandiana</option>
+                                            <option value="Tamarix Chinensis">Tamarix Chinensis</option>
+                                            <option value="Acacia Farnesiana">Acacia Farnesiana</option>
+                                            <option value="Agave Ferox">Agave Ferox</option>
+                                            <option value="Agave Salmiana">Agave Salmiana</option>
+                                            <option value="Agave Mezcalero">Agave Mezcalero</option>
+                                            <option value="Arbutus Xalapensis">Arbutus Xalapensis</option>
+                                            <option value="Buddleja cordata">Buddleja cordata</option>
+                                            <option value="Dodonaea Viscosa">Dodonaea Viscosa</option>
+                                            <option value="Echeveria gibbiflora">Echeveria gibbiflora</option>
+                                            <option value="Eysenhardtia Polystachaya">Eysenhardtia Polystachaya</option>
+                                            <option value="Fucraea Bedinhaussi">Fucraea Bedinhaussi</option>
+                                            <option value="Ipomea Murucoides">Ipomea Murucoides</option>
+                                            <option value="Mimosa Biuncifera">Mimosa Biuncifera</option>
+                                            <option value="Nolia Parviflora">Nolia Parviflora</option>
+                                            <option value="Senecio Praecox">Senecio Praecox</option>
+                                            <option value="Senna Multigladulosa">Senna Multigladulosa</option>
+                                            <option value="Sedum Oxypetalum">Sedum Oxypetalum</option>
+                                            <option value="Symphoricarpos Microphyllus">Symphoricarpos Microphyllus</option>
+                                            <option value="Tecoma Stans">Tecoma Stans</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="categoria">Categoria</label>
+                                    <input type="text" class="form-control" id="categoria" name="categoria" #categoria="ngModel" [(ngModel)]="modeloSemillas.categoria" required placeholder="Categoria de la semilla">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="categoria">Procedencia</label>
+                                    <input type="text" class="form-control" id="categoria" name="procedencia" #procedencia="ngModel" [(ngModel)]="modeloSemillas.procedencia" required placeholder="Categoria de la semilla">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="">Tipo de material</label>
+                                    <select id="inputState" class="form-control" name="material" #material="ngModel" [(ngModel)]="modeloSemillas.material" required>
+                                  <option selected disabled>NINGUNA</option>
+                                  <option>CONIFERAS</option>
+                                  <option>LATIFOLIADAS</option>
+                                  <option>ARBUSTIVAS</option>
+                                  <option>FRUTALES</option>
+
+                                </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="num_costales">Numero de costales</label>
+                                    <input type="number" class="form-control" id="num_costales" name="num_costales" #num_costales="ngModel" [(ngModel)]="modeloSemillas.num_costales" required placeholder="ingresa numero de viaje">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="kg_promedio">Kg promedio/Saco</label>
+                                    <input type="number" class="form-control" id="kg_promedio" name="kg_promedio" #kg_promedio="ngModel" [(ngModel)]="modeloSemillas.kg_promedio" required placeholder="Ingresa los KG promedio">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Kg_totales">Kg totales</label>
+                                    <input type="number" class="form-control" id="Kg_totales" name="kg_totales" #kg_totales="ngModel" [(ngModel)]="modeloSemillas.kg_totales" required placeholder="Ingresa los KG">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="kg_acomulado">Kg acomulado</label>
+                                    <input type="number" class="form-control" id="kg_acomulado" name="kg_acomulado" #kg_acomulado="ngModel" [(ngModel)]="modeloSemillas.kg_acomulado" required placeholder="Ingresa los KG acomulados">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="">Observaciones</label>
+                                    <textarea class="form-control" id="" rows="3" name="observaciones" #observaciones="ngModel" [(ngModel)]="modeloSemillas.observaciones" required placeholder="Escriba aqui sus observaciónes..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-success">Guardar</button>
+                        </form>
+                        <!-- NUEVO USUARIO -->
+                        <form class="was-validated" *ngIf="vistaAdmin" #fUsuario="ngForm" (ngSubmit)="guardarUsuario(fUsuario)">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="nombre">Nombres</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombres" #nombres="ngModel" [(ngModel)]="usuarios.nombres" placeholder="Nombres" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="paterno">Apellido Paterno</label>
+                                    <input type="text" class="form-control" id="paterno" name="ap_paterno" #ap_paterno="ngModel" [(ngModel)]="usuarios.ap_paterno" placeholder="Apellido Paterno" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="mateno">Apellido Materno</label>
+                                    <input type="text" class="form-control" id="mateno" name="ap_materno" #ap_materno="ngModel" [(ngModel)]="usuarios.ap_materno" placeholder="Apellido Materno" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="domicilio">Domicilio/Direccion</label>
+                                <input type="text" class="form-control" id="domicilio" name="domicilio" #domicilio="ngModel" [(ngModel)]="usuarios.domicilio" placeholder="Domicilio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="calle">Calle</label>
+                                <input type="text" class="form-control" id="calle" name="calle" #calle="ngModel" [(ngModel)]="usuarios.calle" placeholder="Calle" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="num_trabajador">Numero de trabajador</label>
+                                    <input type="text" class="form-control" id="num_trabajador" name="uto" #uto="ngModel" [(ngModel)]="usuarios.uto" placeholder="Numero de UTO" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="area">Area de trabajo</label>
+                                    <input type="text" class="form-control" id="area" name="area" #area="ngModel" [(ngModel)]="usuarios.area" placeholder="Area de trabajo" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="email">Correo</label>
+                                    <input type="email" class="form-control" id="email" name="correo" #correo="ngModel" [(ngModel)]="usuarios.correo" placeholder="Correo Electronico" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="profesion">Profesión</label>
+                                    <input type="text" class="form-control" id="profesion" name="profesion" #profesion="ngModel" [(ngModel)]="usuarios.profesion" placeholder="Profesión" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="">Observaciones</label>
+                                    <textarea class="form-control" id="" rows="3" required name="observaciones" #observaciones="ngModel" [(ngModel)]="usuarios.observaciones" placeholder="Escriba aqui sus observaciónes..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-success">Guardar</button>
+                        </form>
+                        <!-- Modificar Semilla -->
+                        <form class="was-validated" *ngIf="vistaModificar" #fEditar="ngForm" (ngSubmit)="modificarSemilla(fEditar)">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="fecha">Fecha</label>
+                                    <input type="date" class="form-control" id="fecha" name="fecha" #fecha="ngModel" [(ngModel)]="modeloSemillas.fecha" placeholder="" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="clave">Clave/ID</label>
+                                    <input type="text" class="form-control" id="clave" name="clave" #clave="ngModel" [(ngModel)]="modeloSemillas.clave" placeholder="Clave o ID del producto" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="">Tipo de material</label>
+                                    <select id="inputState" class="form-control" name="material" #material="ngModel" [(ngModel)]="modeloSemillas.material" required>
+                                    <option selected disabled>NINGUNA</option>
+                                    <option>CONIFERAS</option>
+                                    <option>LATIFOLIADAS</option>
+                                    <option>ARBUSTIVAS</option>
+                                    <option>FRUTALES</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputAddress2">Nombre de la especie</label>
+                                    <select class="form-control" id="especie" name="especie" #especie="ngModel" [(ngModel)]="modeloSemillas.especie" required>
+                                        <option value="#" selected disabled>NINGUNA</option>
+                                            <option value="CONIFERAS"><em> CONIFERAS</em> </option>
+                                            <option value="Abies Religiosa">Abies Religiosa</option>
+                                            <option value="Cupressus Lusitanica">Cupressus Lusitanica</option>
+                                            <option value="Pinus Cembroides">Pinus Cembroides</option>
+                                            <option value="Pinus Greggi">Pinus Greggi</option>
+                                            <option value="Pinus Hartwegii">Pinus Hartwegii</option>
+                                            <option value="Pinus Leiophylla">Pinus Leiophylla</option>
+                                            <option value="Pinus Devoniana">Pinus Devoniana</option>
+                                            <option value="Pinus Montezumae">Pinus Montezumae</option>
+                                            <option value="Pinus Patula">Pinus Patula</option>
+                                            <option value="Pinus pseudostrobus">Pinus pseudostrobus</option>
+                                            <option value="Pinus Rudis">Pinus Rudis</option>
+                                            <option value="Pinus Teocote">Pinus Teocote</option>
+                                            <option value="Taxodium Mucronatum">Taxodium Mucronatum</option>
+                                            <option value="LATIFOLIADAS"><em>LATIFOLIADAS</em></option>
+                                            <option value="Alnus Jorullensis">Alnus Jorullensis</option>
+                                            <option value="Bursera Cuneata">Bursera Cuneata</option>
+                                            <option value="Casuarina Equisetifolia">Casuarina Equisetifolia</option>
+                                            <option value="Fraxinus Udhei">Fraxinus Udhei</option>
+                                            <option value="Liquidambar Styraciflua">Liquidambar Styraciflua</option>
+                                            <option value="Prosopis Laevigata">Prosopis Laevigata</option>
+                                            <option value="Quercus spp">Quercus spp</option>
+                                            <option value="Salix Babylonica">Salix Babylonica</option>
+                                            <option value="Salix Bonplandiana">Salix Bonplandiana</option>
+                                            <option value="Tamarix Chinensis">Tamarix Chinensis</option>
+                                            <option value="Acacia Farnesiana">Acacia Farnesiana</option>
+                                            <option value="Agave Ferox">Agave Ferox</option>
+                                            <option value="Agave Salmiana">Agave Salmiana</option>
+                                            <option value="Agave Mezcalero">Agave Mezcalero</option>
+                                            <option value="Arbutus Xalapensis">Arbutus Xalapensis</option>
+                                            <option value="Buddleja cordata">Buddleja cordata</option>
+                                            <option value="Dodonaea Viscosa">Dodonaea Viscosa</option>
+                                            <option value="Echeveria gibbiflora">Echeveria gibbiflora</option>
+                                            <option value="Eysenhardtia Polystachaya">Eysenhardtia Polystachaya</option>
+                                            <option value="Fucraea Bedinhaussi">Fucraea Bedinhaussi</option>
+                                            <option value="Ipomea Murucoides">Ipomea Murucoides</option>
+                                            <option value="Mimosa Biuncifera">Mimosa Biuncifera</option>
+                                            <option value="Nolia Parviflora">Nolia Parviflora</option>
+                                            <option value="Senecio Praecox">Senecio Praecox</option>
+                                            <option value="Senna Multigladulosa">Senna Multigladulosa</option>
+                                            <option value="Sedum Oxypetalum">Sedum Oxypetalum</option>
+                                            <option value="Symphoricarpos Microphyllus">Symphoricarpos Microphyllus</option>
+                                            <option value="Tecoma Stans">Tecoma Stans</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="categoria">Categoria</label>
+                                    <input type="text" class="form-control" id="categoria" name="categoria" #categoria="ngModel" [(ngModel)]="modeloSemillas.categoria" required placeholder="Categoria de la semilla">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="">Observaciones</label>
+                                    <textarea class="form-control" id="" rows="3" name="observaciones" #observaciones="ngModel" [(ngModel)]="modeloSemillas.observaciones" required placeholder="Escriba aqui sus observaciónes..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-success">Guardar</button>
+                        </form>
+                        <!-- SALIDA DE SEMILLAS -->
+                        <form class="was-validated" *ngIf="vistaSalida" #fSalidaSemillas="ngForm" (ngSubmit)="salidaSemillas(fSalidaSemillas)">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="fecha">Fecha de salida</label>
+                                    <input type="date" class="form-control" id="fecha" name="fecha_salida" #fecha_salida="ngModel" [(ngModel)]="capturarSalida.fecha_salida" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="clave">Clave/ID</label>
+                                    <input type="text" class="form-control" id="clave" name="clave" #clave="ngModel" [(ngModel)]="capturarSalida.clave" placeholder="Clave del producto" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="material">Tipo de material</label>
+                                    <select id="material" class="form-control" name="tipo_material" #tipo_material="ngModel" [(ngModel)]="capturarSalida.tipo_material" required>
+                                            <option selected disabled>NINGUNA</option>
+                                            <option>CONIFERAS</option>
+                                            <option>LATIFOLIADAS</option>
+                                            <option>ARBUSTIVAS</option>
+                                            <option>FRUTALES</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="especie">Nombre de la especie</label>
+                                    <select class="form-control" id="especie" name="especie" #especie="ngModel" [(ngModel)]="capturarSalida.especie" required>
+                                            <option value="#" selected disabled>NINGUNA</option>
+                                            <option value="CONIFERAS"><em> CONIFERAS</em> </option>
+                                            <option value="Abies Religiosa">Abies Religiosa</option>
+                                            <option value="Cupressus Lusitanica">Cupressus Lusitanica</option>
+                                            <option value="Pinus Cembroides">Pinus Cembroides</option>
+                                            <option value="Pinus Greggi">Pinus Greggi</option>
+                                            <option value="Pinus Hartwegii">Pinus Hartwegii</option>
+                                            <option value="Pinus Leiophylla">Pinus Leiophylla</option>
+                                            <option value="Pinus Devoniana">Pinus Devoniana</option>
+                                            <option value="Pinus Montezumae">Pinus Montezumae</option>
+                                            <option value="Pinus Patula">Pinus Patula</option>
+                                            <option value="Pinus pseudostrobus">Pinus pseudostrobus</option>
+                                            <option value="Pinus Rudis">Pinus Rudis</option>
+                                            <option value="Pinus Teocote">Pinus Teocote</option>
+                                            <option value="Taxodium Mucronatum">Taxodium Mucronatum</option>
+                                            <option value="LATIFOLIADAS"><em>LATIFOLIADAS</em></option>
+                                            <option value="Alnus Jorullensis">Alnus Jorullensis</option>
+                                            <option value="Bursera Cuneata">Bursera Cuneata</option>
+                                            <option value="Casuarina Equisetifolia">Casuarina Equisetifolia</option>
+                                            <option value="Fraxinus Udhei">Fraxinus Udhei</option>
+                                            <option value="Liquidambar Styraciflua">Liquidambar Styraciflua</option>
+                                            <option value="Prosopis Laevigata">Prosopis Laevigata</option>
+                                            <option value="Quercus spp">Quercus spp</option>
+                                            <option value="Salix Babylonica">Salix Babylonica</option>
+                                            <option value="Salix Bonplandiana">Salix Bonplandiana</option>
+                                            <option value="Tamarix Chinensis">Tamarix Chinensis</option>
+                                            <option value="Acacia Farnesiana">Acacia Farnesiana</option>
+                                            <option value="Agave Ferox">Agave Ferox</option>
+                                            <option value="Agave Salmiana">Agave Salmiana</option>
+                                            <option value="Agave Mezcalero">Agave Mezcalero</option>
+                                            <option value="Arbutus Xalapensis">Arbutus Xalapensis</option>
+                                            <option value="Buddleja cordata">Buddleja cordata</option>
+                                            <option value="Dodonaea Viscosa">Dodonaea Viscosa</option>
+                                            <option value="Echeveria gibbiflora">Echeveria gibbiflora</option>
+                                            <option value="Eysenhardtia Polystachaya">Eysenhardtia Polystachaya</option>
+                                            <option value="Fucraea Bedinhaussi">Fucraea Bedinhaussi</option>
+                                            <option value="Ipomea Murucoides">Ipomea Murucoides</option>
+                                            <option value="Mimosa Biuncifera">Mimosa Biuncifera</option>
+                                            <option value="Nolia Parviflora">Nolia Parviflora</option>
+                                            <option value="Senecio Praecox">Senecio Praecox</option>
+                                            <option value="Senna Multigladulosa">Senna Multigladulosa</option>
+                                            <option value="Sedum Oxypetalum">Sedum Oxypetalum</option>
+                                            <option value="Symphoricarpos Microphyllus">Symphoricarpos Microphyllus</option>
+                                            <option value="Tecoma Stans">Tecoma Stans</option>
+                                        </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="semillas">Cantidad de semillas de salida</label>
+                                    <input type="number" class="form-control" id="semillas" name="cantidad_salida" #cantidad_salida="ngModel" [(ngModel)]="capturarSalida.cantidad_salida" placeholder="Cantidad de semillas" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="motivo">Motivo por el cual solicitan</label>
+                                    <select id="motivo" class="form-control" name="motivo_solicitud" #motivo_solicitud="ngModel" [(ngModel)]="capturarSalida.motivo_solicitud" required>
+                                            <option selected disabled>NINGUNA</option>
+                                            <option>Trabajo de siembra interno</option>
+                                            <option>Trabajo de siembra externo</option>
+                                            <option>Escuela solicitantes</option>
+                                            <option>Practicas profesionales</option>
+                                            <option>Laboratorio de Microbiologia</option>
+                                            <option>Laboratorio de Nutricion Forestal</option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="clave">A quien va dirigido</label>
+                                    <input type="text" class="form-control" id="clave" name="personal_dirigido" #personal_dirigido="ngModel" [(ngModel)]="capturarSalida.personal_dirigido" placeholder="Persona a la que va dirigido" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="clave">Destino de la semilla</label>
+                                    <input type="text" class="form-control" id="clave" name="destino_semilla" #destino_semilla="ngModel" [(ngModel)]="capturarSalida.destino_semilla" placeholder="Destino" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="">Observaciones</label>
+                                    <textarea class="form-control" id="" rows="3" required name="observaciones" #observaciones="ngModel" [(ngModel)]="capturarSalida.observaciones" placeholder="Escriba aqui sus observaciónes..."></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-success">Guardar</button>
+                        </form>
+                        <!-- TABLAS -->
+                        <div class="tablas" *ngIf="vistaTotal">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Especie</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Clave</th>
+                                        <th scope="col">Material</th>
+                                        <th scope="col">Kg Totales</th>
+                                        <th scope="col">Especie-Dominante</th>
+                                        <th scope="col">Actualizar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let dato of semillas">
+                                        <th scope="row">{{dato.especie}}</th>
+                                        <td>{{dato.fecha}}</td>
+                                        <td>{{dato.clave}}</td>
+                                        <td>{{dato.material}}</td>
+                                        <td>{{dato.kg_totales}}</td>
+                                        <td>{{dato.especie}}</td>
+                                        <td>
+                                            <div class="acciones">
+                                                <i class="far fa-edit"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- PDF -->
+                        <div class="pdf" *ngIf="vistaPdf">
+                            <form class="was-validated" id="Formulario1 ">
+                                <div class="form-row ">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputespecie">Nombre de la especie</label>
+                                        <select class="form-control" id="especie">
+                                          <option value="#">NINGUNA</option>
+                                          <option value="#"><em> CONIFERAS</em> </option>
+                                          <option value="#">Abies Religiosa</option>
+                                          <option value="#">Cupressus Lusitanica</option>
+                                          <option value="#">Pinus Cembroides</option>
+                                          <option value="#">Pinus Greggi</option>
+                                          <option value="#">Pinus Hartwegii</option>
+                                          <option value="#">Pinus Leiophylla</option>
+                                          <option value="#">Pinus Devoniana</option>
+                                          <option value="#">Pinus Montezumae</option>
+                                          <option value="#">Pinus Patula</option>
+                                          <option value="#">Pinus pseudostrobus</option>
+                                          <option value="#">Pinus Rudis</option>
+                                          <option value="#">Pinus Teocote</option>
+                                          <option value="#">Taxodium Mucronatum</option>
+                                          <option value="#">Latifoliadas</option>
+                                          <option value="#">Alnus Jorullensis</option>
+                                          <option value="#">Bursera Cuneata</option>
+                                          <option value="#">Casuarina Equisetifolia</option>
+                                          <option value="#">Fraxinus Udhei</option>
+                                          <option value="#">Liquidambar Styraciflua</option>
+                                          <option value="#">Prosopis Laevigata</option>
+                                          <option value="#">Quercus spp</option>
+                                          <option value="#">Salix Babylonica</option>
+                                          <option value="#">Salix Bonplandiana</option>
+                                          <option value="#">Tamarix Chinensis</option>
+                                          <option value="#">Acacia Farnesiana</option>
+                                          <option value="#">Agave Ferox</option>
+                                          <option value="#">Agave Salmiana</option>
+                                          <option value="#">Agave Mezcalero</option>
+                                          <option value="#">Arbutus Xalapensis</option>
+                                          <option value="#">Buddleja cordata</option>
+                                          <option value="#">Dodonaea Viscosa</option>
+                                          <option value="#">Echeveria gibbiflora</option>
+                                          <option value="#">Eysenhardtia Polystachaya</option>
+                                          <option value="#">Fucraea Bedinhaussi</option>
+                                          <option value="#">Ipomea Murucoides</option>
+                                          <option value="#">Mimosa Biuncifera</option>
+                                          <option value="#"> Nolia Parviflora</option>
+                                          <option value="#">Senecio Praecox</option>
+                                          <option value="#">Senna Multigladulosa</option>
+                                          <option value="#">Sedum Oxypetalum</option>
+                                          <option value="#">Symphoricarpos Microphyllus</option>
+                                          <option value="#">Tecoma Stans</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3 ">
+                                        <label for="inputfmaterial ">Tipo de Material</label>
+                                        <select class="form-control" id="material">
+                                            <option value="#">NINGUNA</option>
+                                            <option value="#">CONIFERAS</option>
+                                            <option value="#">LATIFOLIADAS</option>
+                                            <option value="#">ARBUSTIVAS</option>
+                                            <option value="#">FRUTALES</option>
+                                          </select>
+                                    </div>
+                                    <div class="form-group col-md-2 ">
+                                        <label for="inputclave ">Clave/Id</label>
+                                        <input type="text" class="form-control " id="Clave " placeholder="#016">
+                                    </div>
+                                    <div class="form-group col-md-3 ">
+                                        <label for="inputfecha ">Fecha</label>
+                                        <input type="date" class="form-control " id="Fecha ">
+                                    </div>
+                                    <!--check del formulario completo-->
+                                    <div class="form-group col-md-6 ">
+                                        <label for="inputfrutosmalos  ">Kilogramos de Frutos dañados o por eliminar</label>
+                                        <input type="text" class="form-control " id="frutosmalos " placeholder="Cantidad a eliminar">
+                                    </div>
+                                    <div class="form-group col-md-6 ">
+                                        <label for="inputfrutosbuenos ">Cantiad de frutos seleccionados en buen estado</label>
+                                        <input type="text" class="form-control " id="frutosbuenos " placeholder="Cantidad de frutos buenos">
+                                    </div>
+                                    <div class="form-group col-md-12 my-4">
+                                        <span class="span">Tipo de Secado Aplicado</span>
+                                        <legend class="so d-flex col" style="font-size: 18px;">
+                                            <div class="form-check my-2 " style="font-size: 20px;">
+                                                <input class="form-check-input" type="checkbox" value="" id="Secado1">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Patio de secado
+                                            </label>
+                                            </div>
+                                            <div class="form-check my-2 mx-4" style="font-size: 20px">
+                                                <input class="form-check-input" type="checkbox" value="" id="hornosecado">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Horno de Secado
+                                            </label>
+                                            </div>
+                                            <div class="form-check my-2 mx-3" style="font-size: 20px">
+                                                <input class="form-check-input" type="checkbox" value="" id="bajosombra">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Bajo Sombra y Aireacion
+                                            </label>
+                                            </div>
+                                            <div class="form-check my-2 mx-3" style="font-size: 20px">
+                                                <input class="form-check-input" type="checkbox" value="" id="Periodo">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Periodo secado
+                                            </label>
+                                            </div>
+                                        </legend>
+                                    </div>
+
+
+                                    <!--Segunda parte of the formulario en realizar-->
+                                    <div class="form-group col-md-12 my-4">
+                                        <span class="span">Tipo de extracion de semillas</span>
+                                        <legend class="so d-flex col" style="font-size: 18px;">
+                                            <div class="form-check my-2 " style="font-size: 20px;">
+                                                <input class="form-check-input" type="checkbox" value="" id="Tambor">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Tambor Rotatorio
+                                            </label>
+                                            </div>
+                                            <div class="form-check my-2 mx-3" style="font-size: 20px">
+                                                <input class="form-check-input" type="checkbox" value="" id="Molino">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Molino Electronico
+                                            </label>
+                                            </div>
+                                            <div class="form-check my-2 mx-3" style="font-size: 20px">
+                                                <input class="form-check-input" type="checkbox" value="" id="molinomanual">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Molino Manual
+                                            </label>
+                                            </div>
+                                            <div class="form-check my-2 mx-3" style="font-size: 20px">
+                                                <input class="form-check-input" type="checkbox" value="" id="Forma-manua">
+                                                <label class="form-check-label" for="defaultCheck1">
+                                              Forma Manual
+                                            </label>
+                                            </div>
+                                        </legend>
+                                    </div>
+                                    <div class="form-group col-md-6 my-3">
+                                        <label for="inputCanti ">Cantidad de Semillas en Bruto</label>
+                                        <input type="text" class="form-control " id="Cantibruto " placeholder="Cantidad de semillas en bruto">
+                                    </div>
+                                    <div class="form-group col-md-6 my-3 ">
+                                        <label for="inputcantidad ">Cantidad de Semillas utilizadas en Laboratorio</label>
+                                        <input type="text" class="form-control " id="Cantilabo " placeholder="Cantidad de semillas en el Laboratorio">
+                                    </div>
+
+                                    <div class="form-group col-md-12  titlulo-pdf titlulo-pdf">
+                                        <h3 class="titulolaboresul">Resutlados del Laboratorio</h3>
+                                    </div>
+
+                                    <div class="form-group col-md-6 my-3  " style="font-size: 20px;">
+                                        <label for="inputhumedad ">Humedad</label>
+                                        <input type="text" class="form-control " id="Humedad " placeholder=" % Humedad ">
+                                    </div>
+                                    <div class="form-group col-md-6 my-3  " style="font-size: 20px;">
+                                        <label for="inputpureza ">Pureza</label>
+                                        <input type="text" class="form-control " id="Pureza " placeholder=" % Pureza ">
+                                    </div>
+                                    <div class="form-group col-md-6 my-3  " style="font-size: 20px;">
+                                        <label for="inputviabilidad ">Viabilidad</label>
+                                        <input type="text" class="form-control " id="Viabilidad " placeholder=" % Viabilidad ">
+                                    </div>
+                                    <div class="form-group col-md-6 my-3 ">
+                                        <label for="inputgermen ">Germinzacion</label>
+                                        <input type="text " class="form-control " id="Germen " placeholder=" % Germinacion ">
+                                    </div>
+                                    <!--parte del laboratorio y germoplasma-->
+                                    <div class="form-group col-md-6 my-3 mx-20 ">
+                                        <label for="inputgermen ">fecha de analisis</label>
+                                        <input type="date" class="form-control " id="Fechaanalisis " placeholder=" Fecha analisis ">
+                                    </div>
+                                    <div class="form-group col-md-6  my-3 ">
+                                        <label for="inputfalma ">Tipo de Almacenamiento</label>
+                                        <select class="form-control" id="almacenamiento">
+                                            <option value="#">NINGUNA</option>
+                                            <option value="#">Congelador -18°C</option>
+                                            <option value="#">Refrigerador 1°C</option>
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="form-row ">
+                                    <div class="form-group col-md-12 ">
+                                        <label for="Observaciones ">Observaciones</label>
+                                        <textarea class="form-control " id="observaciones " cols="10 " rows="8 " placeholder="Esta semilla presenta un avance en el crecimiento "></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit " class="btn btn-success btn-block ">Guardar informaciòn</button>
+                            </form>
+                        </div>
+                        <div class="alert alert-success mt-2 animacion" role="alert" *ngIf="alerta">
+                            {{texto}}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>
+
+<app-footer></app-footer>

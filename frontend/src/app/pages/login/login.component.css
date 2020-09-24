@@ -1,0 +1,16 @@
+.cuerpo-login {
+    height: 100vh;
+    width: 100%;
+    background-color: #f6f6f6;
+}
+
+.tarjeta-login {
+    height: 100%;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+}
+
+.card-body {
+    padding: 0 1.25rem 1.25rem 1.25rem!important;
+}

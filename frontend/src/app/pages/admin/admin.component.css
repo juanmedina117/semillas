@@ -1,0 +1,117 @@
+.contenedor-admin {
+    height: calc(100vh - 207px);
+    width: 100%;
+}
+
+.row {
+    height: 100%;
+}
+
+h4 {
+    text-align: center;
+    margin: 0;
+}
+
+aside,
+main {
+    height: 100%;
+}
+
+.main {
+    overflow: auto;
+}
+
+
+/* ASIDE */
+
+.aside {
+    border-right: 1px solid #cccccc;
+    padding: 0;
+}
+
+.aside {
+    overflow: auto;
+}
+
+.titulo-aside {
+    color: #ffffff;
+    background-color: #343A40;
+    padding: 20px;
+}
+
+.list-group-item {
+    text-align: center;
+    padding: 51px 5px !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+
+/* MAIN */
+
+.main {
+    overflow: auto;
+}
+
+.titulo-main {
+    margin: 25px;
+}
+
+
+/* GENERAR PDF */
+
+.pdf {
+    height: 100%;
+}
+
+legend label {
+    font-size: 17px;
+    width: max-content;
+    color: #000000!important;
+}
+
+legend .form-check {
+    display: flex;
+    align-items: center;
+}
+
+.titlulo-pdf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.span {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+/* ACCIONES */
+
+.acciones {
+    display: flex;
+    justify-content: center;
+}
+
+
+/*  EFECTOS DE ALERTA CCS  */
+
+.animacion {
+    animation-name: ocultar;
+    animation-duration: 5s;
+    animation-iteration-count: unset;
+}
+
+@keyframes ocultar {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}

@@ -1,0 +1,9 @@
+.logo {
+    height: 13%!important;
+    width: 13%!important;
+}
+
+.barra {
+    display: flex!important;
+    justify-content: space-between!important;
+}
