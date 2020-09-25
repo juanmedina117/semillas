@@ -145,6 +145,20 @@ const SEMILLAS = {
                 })
             }
         })
+    },
+    buscarSemilla: (req, res) => {
+
+        let claveParams = req.params.id;
+
+        MODELO_SEMILLA.findById(claveParams, (err, dato) => {
+            if (err) {
+                console.log(err);
+            } else {
+                return res.status(200).send({
+                    dato
+                })
+            }
+        })
     }
 }
 module.exports = SEMILLAS;

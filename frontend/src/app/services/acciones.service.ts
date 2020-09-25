@@ -45,4 +45,13 @@ export class AccionesService {
 
     return this._http.post(`${this.url}registrarSalida`,params,{headers:headers});
   }
+
+  editarSemilla(semilla):Observable<any>{
+
+    let params = JSON.stringify(semilla)
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this._http.put(`${this.url}editarSemilla/${semilla._id}`,params,{headers:headers});
+
+
+  }
 }

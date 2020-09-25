@@ -30,7 +30,6 @@ export class AdminComponent implements OnInit {
 
   public vistaRegistro:boolean;
   public vistaAdmin:boolean;
-  public vistaModificar:boolean;
   public vistaSalida:boolean;
   public vistaTotal:boolean;
   public vistaPdf:boolean;
@@ -113,12 +112,7 @@ export class AdminComponent implements OnInit {
     )
   }
 
-  modificarSemilla(f:NgForm){
-
-    console.log(f);
-
-  }
-
+ 
   salidaSemillas(f:NgForm){
 
     this._acciones.salidaSemilla(this.capturarSalida).subscribe(
@@ -139,6 +133,11 @@ export class AdminComponent implements OnInit {
     
   }
 
+  editar(id){
+    console.log(id);
+  }
+
+  
 
 
 
@@ -154,7 +153,6 @@ export class AdminComponent implements OnInit {
     this.titulo = "Registar entrada de semilla";
     this.vistaRegistro = true;
     this.vistaAdmin = false;
-    this.vistaModificar = false;
     this.vistaSalida = false;
     this.vistaTotal = false;
     this.vistaPdf = false;
@@ -164,27 +162,16 @@ export class AdminComponent implements OnInit {
     this.titulo = "Nuevo Admin";
     this.vistaAdmin = true;
     this.vistaRegistro = false;
-    this.vistaModificar = false;
     this.vistaSalida = false;
     this.vistaTotal = false;
     this.vistaPdf = false;
   }
 
-  modificar(){
-    this.titulo = "Modificar Semilla";
-    this.vistaAdmin = false;
-    this.vistaModificar = true;
-    this.vistaSalida = false;
-    this.vistaTotal = false;
-    this.vistaPdf = false;
-    this.vistaRegistro = false;
-
-  }
+  
 
   salida(){
     this.titulo = "Registro de Salida";
     this.vistaAdmin = false;
-    this.vistaModificar = false;
     this.vistaSalida = true;
     this.vistaTotal = false;
     this.vistaPdf = false;
@@ -196,7 +183,6 @@ export class AdminComponent implements OnInit {
     this.titulo = "Total de Semillas";
     this.ngOnInit();
     this.vistaAdmin = false;
-    this.vistaModificar = false;
     this.vistaSalida = false;
     this.vistaTotal = true;
     this.vistaPdf = false;
@@ -207,7 +193,6 @@ export class AdminComponent implements OnInit {
   pdf(){
     this.titulo = "Generador de PDF";
     this.vistaAdmin = false;
-    this.vistaModificar = false;
     this.vistaSalida = false;
     this.vistaTotal = false;
     this.vistaPdf = true;

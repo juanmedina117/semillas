@@ -16,7 +16,7 @@ let semilla = new Schema({
         required: true
     },
     clave: {
-        type: String,
+        type: Number,
         required: true
     },
     especie: {

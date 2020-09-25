@@ -9,5 +9,5 @@ router.put('/editarSemilla/:id', controladorSemilla.editarSemilla);
 router.delete('/eliminarSemilla/:id', controladorSemilla.eliminarSemilla);
 router.post('/registrarSalida', controladorSemilla.salidaSemillas);
 router.get('/verSemillas', controladorSemilla.verSemillas);
-
+router.get('/buscarSemilla/:id', controladorSemilla.buscarSemilla);
 module.exports = router;

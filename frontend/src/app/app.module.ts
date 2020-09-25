@@ -11,6 +11,7 @@ import { BarraComponent } from './components/barra/barra.component';
 import { BarraUsuarioComponent } from './components/barra-usuario/barra-usuario.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { EditarComponent } from './pages/editar/editar.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     BarraComponent,
     BarraUsuarioComponent,
     FooterComponent,
-    AdminComponent
+    AdminComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,

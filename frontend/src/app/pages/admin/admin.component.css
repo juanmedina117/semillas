@@ -88,11 +88,25 @@ legend .form-check {
 }
 
 
+/* MODIFICAR SEMILLA */
+
+#buscar-semilla {
+    width: 90%;
+    margin-bottom: 15px;
+}
+
+
 /* ACCIONES */
 
 .acciones {
     display: flex;
     justify-content: center;
+}
+
+.editar {
+    cursor: pointer;
+    color: #ffc107;
+    font-size: 22px;
 }
 
 

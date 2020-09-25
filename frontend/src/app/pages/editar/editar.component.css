@@ -1,0 +1,24 @@
+.main-editar {
+    height: 76.6vh;
+}
+
+
+/*  EFECTOS DE ALERTA CCS  */
+
+.animacion {
+    animation-name: ocultar;
+    animation-duration: 5s;
+    animation-iteration-count: unset;
+}
+
+@keyframes ocultar {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
