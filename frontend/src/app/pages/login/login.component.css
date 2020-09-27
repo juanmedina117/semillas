@@ -14,3 +14,27 @@
 .card-body {
     padding: 0 1.25rem 1.25rem 1.25rem!important;
 }
+
+
+/*  EFECTOS DE ALERTA CCS  */
+
+.animacion {
+    position: fixed;
+    top: 700px;
+    left: 545px;
+    animation-name: ocultar;
+    animation-duration: 5s;
+    animation-iteration-count: unset;
+}
+
+@keyframes ocultar {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}

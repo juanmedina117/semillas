@@ -39,11 +39,11 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="inputAddress">Clave/ID</label>
                                     <input type="text" class="form-control" id="inputAddress" name="clave" #clave="ngModel" [(ngModel)]="modeloSemillas.clave" required placeholder="Clave/ID">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="inputAddress2">Nombre de la especie</label>
                                     <select class="form-control" id="especie" name="especie" #especie="ngModel" [(ngModel)]="modeloSemillas.especie" required>
                                         <option value="#" selected disabled>NINGUNA</option>
@@ -159,13 +159,21 @@
                                     <input type="text" class="form-control" id="mateno" name="ap_materno" #ap_materno="ngModel" [(ngModel)]="usuarios.ap_materno" placeholder="Apellido Materno" required>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="domicilio">Domicilio/Direccion</label>
-                                <input type="text" class="form-control" id="domicilio" name="domicilio" #domicilio="ngModel" [(ngModel)]="usuarios.domicilio" placeholder="Domicilio" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="domicilio">Domicilio/Direccion</label>
+                                    <input type="text" class="form-control" id="domicilio" name="domicilio" #domicilio="ngModel" [(ngModel)]="usuarios.domicilio" placeholder="Domicilio" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="calle">Calle</label>
+                                    <input type="text" class="form-control" id="calle" name="calle" #calle="ngModel" [(ngModel)]="usuarios.calle" placeholder="Calle" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="calle">Calle</label>
-                                <input type="text" class="form-control" id="calle" name="calle" #calle="ngModel" [(ngModel)]="usuarios.calle" placeholder="Calle" required>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="calle">Constraseña</label>
+                                    <input type="password" class="form-control" id="calle" name="password" #password="ngModel" [(ngModel)]="usuarios.password" placeholder="cOntraseña" required>
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -303,7 +311,7 @@
                         </form>
                         <!-- TABLAS -->
                         <div class="tablas" *ngIf="vistaTotal">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="tablas">
                                 <thead>
                                     <tr>
                                         <th scope="col">Especie</th>
@@ -336,107 +344,106 @@
                         </div>
                         <!-- PDF -->
                         <div class="pdf" *ngIf="vistaPdf">
-                            <form class="was-validated" id="Formulario1 ">
+                            <form class="was-validated" id="Formulario1 " #Formulario1 (ngSubmit)="crearReporte(Formulario1)">
                                 <div class="form-row ">
                                     <div class="form-group col-md-4">
                                         <label for="inputespecie">Nombre de la especie</label>
-                                        <select class="form-control" id="especie">
-                                          <option value="#">NINGUNA</option>
-                                          <option value="#"><em> CONIFERAS</em> </option>
-                                          <option value="#">Abies Religiosa</option>
-                                          <option value="#">Cupressus Lusitanica</option>
-                                          <option value="#">Pinus Cembroides</option>
-                                          <option value="#">Pinus Greggi</option>
-                                          <option value="#">Pinus Hartwegii</option>
-                                          <option value="#">Pinus Leiophylla</option>
-                                          <option value="#">Pinus Devoniana</option>
-                                          <option value="#">Pinus Montezumae</option>
-                                          <option value="#">Pinus Patula</option>
-                                          <option value="#">Pinus pseudostrobus</option>
-                                          <option value="#">Pinus Rudis</option>
-                                          <option value="#">Pinus Teocote</option>
-                                          <option value="#">Taxodium Mucronatum</option>
-                                          <option value="#">Latifoliadas</option>
-                                          <option value="#">Alnus Jorullensis</option>
-                                          <option value="#">Bursera Cuneata</option>
-                                          <option value="#">Casuarina Equisetifolia</option>
-                                          <option value="#">Fraxinus Udhei</option>
-                                          <option value="#">Liquidambar Styraciflua</option>
-                                          <option value="#">Prosopis Laevigata</option>
-                                          <option value="#">Quercus spp</option>
-                                          <option value="#">Salix Babylonica</option>
-                                          <option value="#">Salix Bonplandiana</option>
-                                          <option value="#">Tamarix Chinensis</option>
-                                          <option value="#">Acacia Farnesiana</option>
-                                          <option value="#">Agave Ferox</option>
-                                          <option value="#">Agave Salmiana</option>
-                                          <option value="#">Agave Mezcalero</option>
-                                          <option value="#">Arbutus Xalapensis</option>
-                                          <option value="#">Buddleja cordata</option>
-                                          <option value="#">Dodonaea Viscosa</option>
-                                          <option value="#">Echeveria gibbiflora</option>
-                                          <option value="#">Eysenhardtia Polystachaya</option>
-                                          <option value="#">Fucraea Bedinhaussi</option>
-                                          <option value="#">Ipomea Murucoides</option>
-                                          <option value="#">Mimosa Biuncifera</option>
-                                          <option value="#"> Nolia Parviflora</option>
-                                          <option value="#">Senecio Praecox</option>
-                                          <option value="#">Senna Multigladulosa</option>
-                                          <option value="#">Sedum Oxypetalum</option>
-                                          <option value="#">Symphoricarpos Microphyllus</option>
-                                          <option value="#">Tecoma Stans</option>
+                                        <select class="form-control" name="especie" #especie="ngModel" [(ngModel)]="modeloPDF.especie" id="especie" required>
+                                            <option value="CONIFERAS"><em> CONIFERAS</em> </option>
+                                            <option value="Abies Religiosa">Abies Religiosa</option>
+                                            <option value="Cupressus Lusitanica">Cupressus Lusitanica</option>
+                                            <option value="Pinus Cembroides">Pinus Cembroides</option>
+                                            <option value="Pinus Greggi">Pinus Greggi</option>
+                                            <option value="Pinus Hartwegii">Pinus Hartwegii</option>
+                                            <option value="Pinus Leiophylla">Pinus Leiophylla</option>
+                                            <option value="Pinus Devoniana">Pinus Devoniana</option>
+                                            <option value="Pinus Montezumae">Pinus Montezumae</option>
+                                            <option value="Pinus Patula">Pinus Patula</option>
+                                            <option value="Pinus pseudostrobus">Pinus pseudostrobus</option>
+                                            <option value="Pinus Rudis">Pinus Rudis</option>
+                                            <option value="Pinus Teocote">Pinus Teocote</option>
+                                            <option value="Taxodium Mucronatum">Taxodium Mucronatum</option>
+                                            <option value="LATIFOLIADAS"><em>LATIFOLIADAS</em></option>
+                                            <option value="Alnus Jorullensis">Alnus Jorullensis</option>
+                                            <option value="Bursera Cuneata">Bursera Cuneata</option>
+                                            <option value="Casuarina Equisetifolia">Casuarina Equisetifolia</option>
+                                            <option value="Fraxinus Udhei">Fraxinus Udhei</option>
+                                            <option value="Liquidambar Styraciflua">Liquidambar Styraciflua</option>
+                                            <option value="Prosopis Laevigata">Prosopis Laevigata</option>
+                                            <option value="Quercus spp">Quercus spp</option>
+                                            <option value="Salix Babylonica">Salix Babylonica</option>
+                                            <option value="Salix Bonplandiana">Salix Bonplandiana</option>
+                                            <option value="Tamarix Chinensis">Tamarix Chinensis</option>
+                                            <option value="Acacia Farnesiana">Acacia Farnesiana</option>
+                                            <option value="Agave Ferox">Agave Ferox</option>
+                                            <option value="Agave Salmiana">Agave Salmiana</option>
+                                            <option value="Agave Mezcalero">Agave Mezcalero</option>
+                                            <option value="Arbutus Xalapensis">Arbutus Xalapensis</option>
+                                            <option value="Buddleja cordata">Buddleja cordata</option>
+                                            <option value="Dodonaea Viscosa">Dodonaea Viscosa</option>
+                                            <option value="Echeveria gibbiflora">Echeveria gibbiflora</option>
+                                            <option value="Eysenhardtia Polystachaya">Eysenhardtia Polystachaya</option>
+                                            <option value="Fucraea Bedinhaussi">Fucraea Bedinhaussi</option>
+                                            <option value="Ipomea Murucoides">Ipomea Murucoides</option>
+                                            <option value="Mimosa Biuncifera">Mimosa Biuncifera</option>
+                                            <option value="Nolia Parviflora">Nolia Parviflora</option>
+                                            <option value="Senecio Praecox">Senecio Praecox</option>
+                                            <option value="Senna Multigladulosa">Senna Multigladulosa</option>
+                                            <option value="Sedum Oxypetalum">Sedum Oxypetalum</option>
+                                            <option value="Symphoricarpos Microphyllus">Symphoricarpos Microphyllus</option>
+                                            <option value="Tecoma Stans">Tecoma Stans</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 ">
                                         <label for="inputfmaterial ">Tipo de Material</label>
-                                        <select class="form-control" id="material">
-                                            <option value="#">NINGUNA</option>
-                                            <option value="#">CONIFERAS</option>
-                                            <option value="#">LATIFOLIADAS</option>
-                                            <option value="#">ARBUSTIVAS</option>
-                                            <option value="#">FRUTALES</option>
+                                        <select class="form-control" name="material" #material="ngModel" [(ngModel)]="modeloPDF.material" id="material" required>
+                                            <option disabled selected>NINGUNA</option>
+                                            <option value="Coniferas">CONIFERAS</option>
+                                            <option value="Latifoliadas">LATIFOLIADAS</option>
+                                            <option value="Arbustivas">ARBUSTIVAS</option>
+                                            <option value="Frutales">FRUTALES</option>
                                           </select>
                                     </div>
                                     <div class="form-group col-md-2 ">
                                         <label for="inputclave ">Clave/Id</label>
-                                        <input type="text" class="form-control " id="Clave " placeholder="#016">
+                                        <input type="text" class="form-control" name="clave" #clave="ngModel" [(ngModel)]="modeloPDF.clave" id="Clave " placeholder="#016" required>
                                     </div>
                                     <div class="form-group col-md-3 ">
                                         <label for="inputfecha ">Fecha</label>
-                                        <input type="date" class="form-control " id="Fecha ">
+                                        <input type="date" class="form-control" name="fecha" #fecha="ngModel" [(ngModel)]="modeloPDF.fecha" id="Fecha " required>
                                     </div>
                                     <!--check del formulario completo-->
                                     <div class="form-group col-md-6 ">
-                                        <label for="inputfrutosmalos  ">Kilogramos de Frutos dañados o por eliminar</label>
-                                        <input type="text" class="form-control " id="frutosmalos " placeholder="Cantidad a eliminar">
+                                        <label for="inputfrutosmalos">Kilogramos de Frutos dañados o por eliminar</label>
+                                        <input type="number" class="form-control" name="kg_danadados" #kg_danadados="ngModel" [(ngModel)]="modeloPDF.kg_danadados" id="frutosmalos" placeholder="Cantidad a eliminar" required>
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="inputfrutosbuenos ">Cantiad de frutos seleccionados en buen estado</label>
-                                        <input type="text" class="form-control " id="frutosbuenos " placeholder="Cantidad de frutos buenos">
+                                        <input type="number" class="form-control" name="kg_buenos" #kg_buenos="ngModel" [(ngModel)]="modeloPDF.kg_buenos" id="frutosbuenos" placeholder="Cantidad de frutos buenos" required>
                                     </div>
                                     <div class="form-group col-md-12 my-4">
                                         <span class="span">Tipo de Secado Aplicado</span>
                                         <legend class="so d-flex col" style="font-size: 18px;">
                                             <div class="form-check my-2 " style="font-size: 20px;">
-                                                <input class="form-check-input" type="checkbox" value="" id="Secado1">
+                                                <input class="form-check-input" type="radio" name="tipo_secado" value="Patio de secado" [(ngModel)]="modeloPDF.tipo_secado" id="Secado1" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Patio de secado
                                             </label>
                                             </div>
                                             <div class="form-check my-2 mx-4" style="font-size: 20px">
-                                                <input class="form-check-input" type="checkbox" value="" id="hornosecado">
+                                                <input class="form-check-input" type="radio" name="tipo_secado" value="Horno de Secado" [(ngModel)]="modeloPDF.tipo_secado" id="hornosecado" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Horno de Secado
                                             </label>
                                             </div>
                                             <div class="form-check my-2 mx-3" style="font-size: 20px">
-                                                <input class="form-check-input" type="checkbox" value="" id="bajosombra">
+                                                <input class="form-check-input" type="radio" name="tipo_secado" value="Bajo Sombra y Aireacion" [(ngModel)]="modeloPDF.tipo_secado" id="bajosombra" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Bajo Sombra y Aireacion
                                             </label>
                                             </div>
                                             <div class="form-check my-2 mx-3" style="font-size: 20px">
-                                                <input class="form-check-input" type="checkbox" value="" id="Periodo">
+                                                <input class="form-check-input" type="radio" name="tipo_secado" value="Periodo secado" [(ngModel)]="modeloPDF.tipo_secado" id="Periodo" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Periodo secado
                                             </label>
@@ -450,25 +457,25 @@
                                         <span class="span">Tipo de extracion de semillas</span>
                                         <legend class="so d-flex col" style="font-size: 18px;">
                                             <div class="form-check my-2 " style="font-size: 20px;">
-                                                <input class="form-check-input" type="checkbox" value="" id="Tambor">
+                                                <input class="form-check-input" type="radio" name="tipo_seleccion" value="Tambor Rotatorio" [(ngModel)]="modeloPDF.tipo_seleccion" id="Tambor" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Tambor Rotatorio
                                             </label>
                                             </div>
                                             <div class="form-check my-2 mx-3" style="font-size: 20px">
-                                                <input class="form-check-input" type="checkbox" value="" id="Molino">
+                                                <input class="form-check-input" type="radio" name="tipo_seleccion" value="Molino Electronico" [(ngModel)]="modeloPDF.tipo_seleccion" id="Molino" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Molino Electronico
                                             </label>
                                             </div>
                                             <div class="form-check my-2 mx-3" style="font-size: 20px">
-                                                <input class="form-check-input" type="checkbox" value="" id="molinomanual">
+                                                <input class="form-check-input" type="radio" name="tipo_seleccion" value="Molino Manual" [(ngModel)]="modeloPDF.tipo_seleccion" id="molinomanual" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Molino Manual
                                             </label>
                                             </div>
                                             <div class="form-check my-2 mx-3" style="font-size: 20px">
-                                                <input class="form-check-input" type="checkbox" value="" id="Forma-manua">
+                                                <input class="form-check-input" type="radio" name="tipo_seleccion" value="Forma Manual" [(ngModel)]="modeloPDF.tipo_seleccion" id="Forma-manua" required>
                                                 <label class="form-check-label" for="defaultCheck1">
                                               Forma Manual
                                             </label>
@@ -477,11 +484,11 @@
                                     </div>
                                     <div class="form-group col-md-6 my-3">
                                         <label for="inputCanti ">Cantidad de Semillas en Bruto</label>
-                                        <input type="text" class="form-control " id="Cantibruto " placeholder="Cantidad de semillas en bruto">
+                                        <input type="number" class="form-control " name="semillas_brutas" #semillas_brutas [(ngModel)]="modeloPDF.semillas_brutas" id="Cantibruto " placeholder="Cantidad de semillas en bruto" required>
                                     </div>
                                     <div class="form-group col-md-6 my-3 ">
                                         <label for="inputcantidad ">Cantidad de Semillas utilizadas en Laboratorio</label>
-                                        <input type="text" class="form-control " id="Cantilabo " placeholder="Cantidad de semillas en el Laboratorio">
+                                        <input type="number" class="form-control " name="semillas_utilizadas" #semillas_utilizadas [(ngModel)]="modeloPDF.semillas_utilizadas" id="Cantilabo " placeholder="Cantidad de semillas en el Laboratorio" required>
                                     </div>
 
                                     <div class="form-group col-md-12  titlulo-pdf titlulo-pdf">
@@ -490,47 +497,131 @@
 
                                     <div class="form-group col-md-6 my-3  " style="font-size: 20px;">
                                         <label for="inputhumedad ">Humedad</label>
-                                        <input type="text" class="form-control " id="Humedad " placeholder=" % Humedad ">
+                                        <input type="number" class="form-control " name="humedad" #humedad [(ngModel)]="modeloPDF.humedad" id="Humedad " placeholder=" % Humedad " required>
                                     </div>
                                     <div class="form-group col-md-6 my-3  " style="font-size: 20px;">
                                         <label for="inputpureza ">Pureza</label>
-                                        <input type="text" class="form-control " id="Pureza " placeholder=" % Pureza ">
+                                        <input type="number" class="form-control " name="pureza" #pureza [(ngModel)]="modeloPDF.pureza" id="Pureza " placeholder=" % Pureza " required>
                                     </div>
                                     <div class="form-group col-md-6 my-3  " style="font-size: 20px;">
                                         <label for="inputviabilidad ">Viabilidad</label>
-                                        <input type="text" class="form-control " id="Viabilidad " placeholder=" % Viabilidad ">
+                                        <input type="number" class="form-control " name="viabilidad" #viabilidad [(ngModel)]="modeloPDF.viabilidad" id="Viabilidad " placeholder=" % Viabilidad " required>
                                     </div>
                                     <div class="form-group col-md-6 my-3 ">
                                         <label for="inputgermen ">Germinzacion</label>
-                                        <input type="text " class="form-control " id="Germen " placeholder=" % Germinacion ">
+                                        <input type="number" class="form-control " name="germinacion" #germinacion [(ngModel)]="modeloPDF.germinacion" id="Germen " placeholder=" % Germinacion " required>
                                     </div>
                                     <!--parte del laboratorio y germoplasma-->
                                     <div class="form-group col-md-6 my-3 mx-20 ">
                                         <label for="inputgermen ">fecha de analisis</label>
-                                        <input type="date" class="form-control " id="Fechaanalisis " placeholder=" Fecha analisis ">
+                                        <input type="date" class="form-control" name="fecha_analisis" #fecha_analisis [(ngModel)]="modeloPDF.fecha_analisis" id="Fechaanalisis " placeholder=" Fecha analisis " required>
                                     </div>
                                     <div class="form-group col-md-6  my-3 ">
                                         <label for="inputfalma ">Tipo de Almacenamiento</label>
-                                        <select class="form-control" id="almacenamiento">
-                                            <option value="#">NINGUNA</option>
-                                            <option value="#">Congelador -18°C</option>
-                                            <option value="#">Refrigerador 1°C</option>
+                                        <select class="form-control" name="almacenamiento" #almacenamiento [(ngModel)]="modeloPDF.almacenamiento" id="almacenamiento" required>
+                                            <option disabled selected >NINGUNA</option>
+                                            <option value="Congelador -18°C">Congelador -18°C</option>
+                                            <option value="Refrigerador 1°C">Refrigerador 1°C</option>
                                           </select>
                                     </div>
                                 </div>
                                 <div class="form-row ">
                                     <div class="form-group col-md-12 ">
                                         <label for="Observaciones ">Observaciones</label>
-                                        <textarea class="form-control " id="observaciones " cols="10 " rows="8 " placeholder="Esta semilla presenta un avance en el crecimiento "></textarea>
+                                        <textarea class="form-control " name="observaciones" #observaciones [(ngModel)]="modeloPDF.observaciones" id="observaciones " cols="10 " rows="8 " placeholder="Esta semilla presenta un avance en el crecimiento " required></textarea>
                                     </div>
                                 </div>
-                                <button type="submit " class="btn btn-success btn-block ">Guardar informaciòn</button>
+                                <button type="submit" class="btn btn-success btn-block ">Guardar información</button>
                             </form>
                         </div>
                         <div class="alert alert-success mt-2 animacion" role="alert" *ngIf="alerta">
                             {{texto}}
                         </div>
-
+                        <hr class="mt-4">
+                        <div class="tablas" *ngIf="vistaPdf">
+                            <h4 class="mt-4 mb-4">Vista del pdf</h4>
+                            <table class="table table-hover table-bordered" id="tabla-pdf">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Especie</th>
+                                        <th scope="col">Tipo de Material</th>
+                                        <th scope="col">Clave/Id</th>
+                                        <th scope="col">Fecha</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{modeloPDF.especie}}</td>
+                                        <td>{{modeloPDF.material}}</td>
+                                        <td>{{modeloPDF.clave}}</td>
+                                        <td>{{modeloPDF.fecha}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Kg frutos dañados</th>
+                                        <th colspan="2">Kg frutos buenos</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{modeloPDF.kg_danadados}}</td>
+                                        <td colspan="2">{{modeloPDF.kg_buenos}}</td>
+                                    </tr>
+                                    <!-- SEGUNDA PARTE  -->
+                                    <tr>
+                                        <th colspan="4">Tipo de secado aplicado</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">{{modeloPDF.tipo_secado}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4">Tipo de extracción de semillas</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">{{modeloPDF.tipo_seleccion}}</td>
+                                    </tr>
+                                    <!-- TERCERA PARTE -->
+                                    <tr>
+                                        <th colspan="2">Cantidad de Semillas en Bruto</th>
+                                        <th colspan="2">Cantidad de Semillas utilizadas en Laboratorios</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{modeloPDF.semillas_brutas}}</td>
+                                        <td colspan="2">{{modeloPDF.semillas_utilizadas}}</td>
+                                    </tr>
+                                    <!-- CUARTA PARTE -->
+                                    <tr>
+                                        <th colspan="4">Resutlados del Laboratorio</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Humedad</th>
+                                        <th colspan="2">Pureza</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{modeloPDF.humedad}}</td>
+                                        <td colspan="2">{{modeloPDF.pureza}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Viabilidad</th>
+                                        <th colspan="2">Germinzacion</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{modeloPDF.viabilidad}}</td>
+                                        <td colspan="2">{{modeloPDF.germinacion}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Fecha de analisis</th>
+                                        <th colspan="2">Tipo de Almacenamiento</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{modeloPDF.fecha_analisis}}</td>
+                                        <td colspan="2">{{modeloPDF.almacenamiento}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4">Observaciones</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">{{modeloPDF.observaciones}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>

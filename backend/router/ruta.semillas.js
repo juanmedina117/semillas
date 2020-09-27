@@ -3,6 +3,7 @@
 const EXPRESS = require('express');
 let router = EXPRESS.Router();
 let controladorSemilla = require('../controller/controlador.semillas');
+let { verificarToken } = require('../middlewares/autenticacion');
 
 router.post('/crearSemilla', controladorSemilla.guardarSemilla);
 router.put('/editarSemilla/:id', controladorSemilla.editarSemilla);

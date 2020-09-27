@@ -7,6 +7,7 @@ export class Usuario{
         public ap_materno:string,
         public domicilio:string,
         public calle:string,
+        public password:string,
         public uto:string,
         public area:string,
         public correo:string,

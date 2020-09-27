@@ -26,6 +26,10 @@ let usuario = new Schema({
         type: String,
         required: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     uto: {
         type: String,
         required: true,

@@ -2,7 +2,6 @@
 
 const MODELO_SEMILLA = require('../model/modelos.semillas');
 const MODELO_SALIDA = require('../model/modelo.salidaSemilla');
-
 const SEMILLAS = {
     guardarSemilla: (req, res) => {
         let body = req.body;
@@ -19,7 +18,7 @@ const SEMILLAS = {
             kg_promedio: body.kg_promedio,
             kg_totales: body.kg_totales,
             kg_acomulado: body.kg_acomulado,
-            observaciones: body.observaciones,
+            observaciones: body.observaciones
         });
 
         semilla.save((err, semillaCreada) => {

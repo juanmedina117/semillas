@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-barra-usuario',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarraUsuarioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  cerrarSesion(){
+    localStorage.removeItem("TOKEN");
+    this.router.navigate(['/login']);
+  }
 }

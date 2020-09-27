@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'editar/:id', component: EditarComponent },
-  // { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({

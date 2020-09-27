@@ -3,9 +3,15 @@ import { TotalSemillasService } from '../../services/total-semillas.service';
 import { AccionesService } from '../../services/acciones.service';
 import { Semillas } from '../../models/semillas';
 import { Usuario } from '../../models/usuarios';
+import { SalidaPdf } from '../../models/salidaPDF';
 import { salidaSemillas } from '../../models/salidaSemillas';
-
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf';
+
 
 
 @Component({
@@ -23,6 +29,7 @@ export class AdminComponent implements OnInit {
   public modeloSemillas:Semillas;
   public usuarios: Usuario;
   public capturarSalida:salidaSemillas;
+  public modeloPDF:SalidaPdf;
   public texto:string;
   public alerta:boolean;
 
@@ -37,19 +44,26 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private _servicioSemillas:TotalSemillasService,
-    private _acciones:AccionesService
+    private _acciones:AccionesService,
+    private router:Router
   ) {
     this.modeloSemillas = new Semillas(0,'',0,'','','','',0,0,0,0,'');
-    this.usuarios = new Usuario('','','','','','','','','','');
+    this.usuarios = new Usuario('','','','','','','','','','','');
     this.capturarSalida = new salidaSemillas('',0,'','',0,'','','','');
+    this.modeloPDF = new SalidaPdf('','',0,'',0,0,'','',0,0,0,0,0,0,'','','');
     this.alerta = false;
+
   }
 
   ngOnInit(): void {
     this.vistaRegistro = true;
     this.titulo = "Registar entrada de semilla";
     this.getSemillas();
+    this.verificarToken();
   }
+
+  
+
 
   getSemillas(){
 
@@ -82,6 +96,7 @@ export class AdminComponent implements OnInit {
           this.alerta = true;
           this.texto ="La semilla se registro correctamente";
           this.tiempoAlerta();
+          f.reset();
         }
       },
       error=>{
@@ -97,12 +112,12 @@ export class AdminComponent implements OnInit {
     this._acciones.guardarUsuario(this.usuarios).subscribe(
       result =>{
         let respuesta:any = result;
-        console.log(result);
         
         if(respuesta.status === 200){
           this.alerta = true;
           this.texto ="El Usuario se registro correctamente";
           this.tiempoAlerta();
+          f.reset();
         }
       },
       error=>{
@@ -112,7 +127,7 @@ export class AdminComponent implements OnInit {
     )
   }
 
- 
+
   salidaSemillas(f:NgForm){
 
     this._acciones.salidaSemilla(this.capturarSalida).subscribe(
@@ -123,6 +138,7 @@ export class AdminComponent implements OnInit {
           this.alerta = true;
           this.texto ="La salida se  registro correctamente";
           this.tiempoAlerta();
+          f.reset();
         }
       },
       error=>{
@@ -137,16 +153,45 @@ export class AdminComponent implements OnInit {
     console.log(id);
   }
 
-  
+  crearReporte(f:NgForm){
+    this._acciones.generarPDF(this.modeloPDF).subscribe(
+      result =>{
+        console.log(result);
+        let respuesta:any = result;
+        if(respuesta.status === 200){
+          this.alerta = true;
+          this.texto ="El PDF se genero de manera exitosa";
+          this.generarPDF();
+          this.tiempoAlerta();
+          f.reset();
+        }
+        
+      },
+      error=>{
+        console.log(error);
+        
+      }
+    )
+  }
+
+  generarPDF(){
+   var tabla = document.getElementById('tabla-pdf');
+    
+    html2canvas(tabla).then((canvas) =>{
+      console.log(canvas);
+      
+      var imgData = canvas.toDataURL('image/png');
+      var imgAltura = canvas.height * 208 / canvas.width;
+      var pdf = new jsPDF();
+
+      pdf.addImage(imgData,1,5,208,imgAltura);
+      pdf.save("reporte.pdf");
+
+    })
 
 
 
-
-
-
-
-
-
+  }
 
   // VISTAS
   registroSemilla(){
@@ -198,6 +243,17 @@ export class AdminComponent implements OnInit {
     this.vistaPdf = true;
     this.vistaRegistro = false;
 
+  }
+
+  // VERIFICACION DE TOKEN
+  verificarToken(){
+    let verificacion = localStorage.getItem('TOKEN');
+    
+    if (verificacion) {
+      this.getSemillas();
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
 }
